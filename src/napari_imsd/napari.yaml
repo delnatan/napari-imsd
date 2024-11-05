@@ -1,0 +1,37 @@
+name: napari-imsd
+display_name: simple image-MSD calculation tool
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/manifest.html for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: napari-imsd.get_reader
+      python_name: napari_imsd._reader:napari_get_reader
+      title: Open data with simple image-MSD calculation tool
+    - id: napari-imsd.make_container_widget
+      python_name: napari_imsd:ImageThreshold
+      title: Make threshold Container widget
+    - id: napari-imsd.make_magic_widget
+      python_name: napari_imsd:threshold_magic_widget
+      title: Make threshold magic widget
+    - id: napari-imsd.make_function_widget
+      python_name: napari_imsd:threshold_autogenerate_widget
+      title: Make threshold function widget
+    - id: napari-imsd.make_qwidget
+      python_name: napari_imsd:ExampleQWidget
+      title: Make example QWidget
+  readers:
+    - command: napari-imsd.get_reader
+      accepts_directories: false
+      filename_patterns: ['*.npy']
+  widgets:
+    - command: napari-imsd.make_container_widget
+      display_name: Container Threshold
+    - command: napari-imsd.make_magic_widget
+      display_name: Magic Threshold
+    - command: napari-imsd.make_function_widget
+      autogenerate: true
+      display_name: Autogenerate Threshold
+    - command: napari-imsd.make_qwidget
+      display_name: Example QWidget
